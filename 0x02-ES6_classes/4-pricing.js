@@ -1,4 +1,4 @@
-import Currency from './3-currency.js';
+import Currency from './3-currency';
 
 export default class Pricing {
   constructor(amount, currency) {
@@ -31,7 +31,7 @@ export default class Pricing {
   }
 
   validateNumber(value, attribute) {
-    if (typeof value !== 'number' || isNaN(value)) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
       throw new TypeError(`${attribute} must be a number`);
     }
     return value;
