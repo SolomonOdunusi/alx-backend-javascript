@@ -18,6 +18,7 @@ module.exports = {
 	},
 	plugins: ['jest'],
 	rules: {
+		'import/prefer-default-export': 'off',
 		'max-classes-per-file': 'off',
 		'no-underscore-dangle': 'off',
 		'no-console': 'off',
