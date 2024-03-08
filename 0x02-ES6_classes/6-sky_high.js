@@ -1,4 +1,4 @@
-import Building from './5-building.js';
+import Building from './5-building';
 
 export default class SkyHighBuilding extends Building {
   constructor(sqft, floors) {
@@ -15,7 +15,7 @@ export default class SkyHighBuilding extends Building {
   }
 
   validateNumber(value, attribute) {
-    if (typeof value !== 'number' || isNaN(value)) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
       throw new TypeError(`${attribute} must be a number`);
     }
     return value;

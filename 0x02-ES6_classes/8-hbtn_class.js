@@ -21,7 +21,7 @@ export default class HolbertonClass {
   }
 
   validateNumber(value, attribute) {
-    if (typeof value !== 'number' || isNaN(value)) {
+    if (typeof value !== 'number' || Number.isNaN(value)) {
       throw new TypeError(`${attribute} must be a number`);
     }
     return value;
