@@ -2,8 +2,8 @@ import Currency from './3-currency';
 
 export default class Pricing {
   constructor(amount, currency) {
-    this._amount = this.validateNumber(amount, 'Amount');
-    this._currency = this.validateCurrency(currency, 'Currency');
+    this.amount = amount;
+    this.currency = currency;
   }
 
   get amount() {
@@ -11,7 +11,10 @@ export default class Pricing {
   }
 
   set amount(newAmount) {
-    this._amount = this.validateNumber(newAmount, 'Amount');
+    if (typeof newAmount !== 'number') {
+      throw new TypeError('Amount must be a number');
+    }
+    this._amount = newAmount;
   }
 
   get currency() {
@@ -19,7 +22,10 @@ export default class Pricing {
   }
 
   set currency(newCurrency) {
-    this._currency = this.validateCurrency(newCurrency, 'Currency');
+    if (!(newCurrency instanceof Currency)) {
+      throw new TypeError('Currency must be an instance of Currency class');
+    }
+    this._currency = newCurrency;
   }
 
   displayFullPrice() {
@@ -27,20 +33,9 @@ export default class Pricing {
   }
 
   static convertPrice(amount, conversionRate) {
+    if (typeof amount !== 'number' || typeof conversionRate !== 'number') {
+      throw new TypeError('Both amount and conversion rate must be numbers');
+    }
     return amount * conversionRate;
-  }
-
-  validateNumber(value, attribute) {
-    if (typeof value !== 'number' || Number.isNaN(value)) {
-      throw new TypeError(`${attribute} must be a number`);
-    }
-    return value;
-  }
-
-  validateCurrency(value, attribute) {
-    if (!(value instanceof Currency)) {
-      throw new TypeError(`${attribute} must be an instance of Currency`);
-    }
-    return value;
   }
 }
