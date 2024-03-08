@@ -1,20 +1,15 @@
 export default class Building {
   constructor(sqft) {
-    this._sqft = this.validateNumber(sqft, 'Sqft');
+    if (new.target === Building) {
+      throw new Error('Building cannot be instantiated directly');
+    }
+    if (this.evacuationWarningMessage === undefined) {
+      throw new Error('Class extending Building must override evacuationWarningMessage');
+    }
+    this._sqft = sqft;
   }
 
   get sqft() {
     return this._sqft;
-  }
-
-  evacuationWarningMessage() {
-    throw new Error('Class extending Building must override evacuationWarningMessage');
-  }
-
-  validateNumber(value, attribute) {
-    if (typeof value !== 'number' || Number.isNaN(value)) {
-      throw new TypeError(`${attribute} must be a number`);
-    }
-    return value;
   }
 }

@@ -1,7 +1,7 @@
 export default class Airport {
   constructor(name, code) {
-    this._name = this.validateString(name, 'Name');
-    this._code = this.validateString(code, 'Code');
+    this._name = name;
+    this._code = code;
   }
 
   get name() {
@@ -14,12 +14,5 @@ export default class Airport {
 
   toString() {
     return `Airport [${this._code}] { _name: '${this._name}', _code: '${this._code}' }`;
-  }
-
-  validateString(value, attribute) {
-    if (typeof value !== 'string') {
-      throw new TypeError(`${attribute} must be a string`);
-    }
-    return value;
   }
 }
